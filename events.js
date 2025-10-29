@@ -113,9 +113,10 @@ app.put('/registration/:id',(request,response)=>{
     }           
 })
 //deleting registration(CANCELLING by name)
-app.delete('/registration',(request,response)=>{    
+app.delete('/registration/:id',(request,response)=>{   
+    const uid=parseInt(request.params.id); 
     
-    const regObj=registration.find(reg=>reg.name===request.body.name)
+    const regObj=registration.find(reg=>reg.id===uid)
     if(regObj){
         const eventReg=events.find(event=>event.title===regObj.competetion)
         eventReg.capacity+=1;
